@@ -1,0 +1,41 @@
+﻿<Window x:Class="WORDLE_v._2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Wordle Game" Height="400" Width="400">
+    <Grid>
+        <!-- Siatka 5x5 -->
+        <UniformGrid Rows="5" Columns="5" Margin="10" Name="GridLetters">
+            <!-- Komórki dla liter (tworzymy 25 komórek) -->
+            <TextBlock Text=" " Name="Cell0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell7" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell8" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell9" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell10" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell11" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell12" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell13" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell14" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell15" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell16" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell17" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell18" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell19" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell20" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell21" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell22" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell23" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Text=" " Name="Cell24" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+        </UniformGrid>
+
+        <!-- Pole do wpisywania słowa -->
+        <TextBox Name="WordInput" Width="200" Height="30" VerticalAlignment="Bottom" Margin="0,0,0,40" HorizontalAlignment="Center" />
+        <!-- Przycisk do sprawdzania słowa -->
+        <Button Content="Sprawdź słowo" Width="120" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Center" Click="CheckWord" />
+    </Grid>
+</Window>
