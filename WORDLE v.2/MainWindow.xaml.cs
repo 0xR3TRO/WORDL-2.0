@@ -4,14 +4,16 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace WORDLE_v._2
+namespace WORDLE_v2
 {
     public partial class MainWindow : Window
     {
+        // Lista słów
         private List<string> listaSlow = new List<string> { "cloud", "apple", "brave", "house", "light", "train", "water", "bread", "plane", "heart" };
+
         private string wylosowaneSlowo;
         private int pozostaleProby = 5;
-        private int aktualnyRzad = 0; // Wskazuje, w którym rzędzie aktualnie gracz wpisuje słowo
+        private int aktualnyRzad = 0;
 
         public MainWindow()
         {
@@ -27,16 +29,19 @@ namespace WORDLE_v._2
             pozostaleProby = 5;
             aktualnyRzad = 0;
             ClearGrid();
+            GameMessage.Text = "Masz 5 prób na odgadnięcie słowa!";
         }
 
         // Czyszczenie siatki (resetowanie gry)
         private void ClearGrid()
         {
-            for (int i = 0; i < 25; i++)
+            foreach (UIElement element in GridLetters.Children)
             {
-                TextBlock cell = (TextBlock)GridLetters.Children[i];
-                cell.Text = " ";
-                cell.Background = Brushes.White;
+                if (element is Border border && border.Child is TextBlock cell)
+                {
+                    cell.Text = " ";
+                    cell.Background = Brushes.White;
+                }
             }
         }
 
@@ -48,23 +53,24 @@ namespace WORDLE_v._2
             // Sprawdzenie długości słowa
             if (slowoGracza.Length != 5)
             {
-                MessageBox.Show("Słowo musi mieć 5 liter!");
+                GameMessage.Text = "Słowo musi mieć dokładnie 5 liter!";
                 return;
             }
 
             if (pozostaleProby <= 0)
             {
-                MessageBox.Show($"Nie udało się odgadnąć! Prawidłowe słowo to: {wylosowaneSlowo}");
+                GameMessage.Text = $"Koniec gry! Prawidłowe słowo to: {wylosowaneSlowo}";
                 LosujSlowo();
                 return;
             }
 
             pozostaleProby--;
 
-            // Sprawdzenie słowa i podświetlenie liter
+            // Sprawdzenie i podświetlenie liter w siatce
             for (int i = 0; i < 5; i++)
             {
-                TextBlock cell = (TextBlock)GridLetters.Children[aktualnyRzad * 5 + i];
+                Border border = (Border)GridLetters.Children[aktualnyRzad * 5 + i];
+                TextBlock cell = (TextBlock)border.Child;
                 cell.Text = slowoGracza[i].ToString();
 
                 if (slowoGracza[i] == wylosowaneSlowo[i])
@@ -81,19 +87,21 @@ namespace WORDLE_v._2
                 }
             }
 
+            // Sprawdzenie wyniku
             if (slowoGracza == wylosowaneSlowo)
             {
-                MessageBox.Show("Gratulacje! Odgadłeś słowo!");
+                GameMessage.Text = "Gratulacje! Odgadłeś słowo!";
                 LosujSlowo();
             }
             else if (pozostaleProby == 0)
             {
-                MessageBox.Show($"Niestety, nie odgadłeś. Prawidłowe słowo to: {wylosowaneSlowo}");
+                GameMessage.Text = $"Niestety, nie odgadłeś. Prawidłowe słowo to: {wylosowaneSlowo}";
                 LosujSlowo();
             }
             else
             {
                 aktualnyRzad++;
+                GameMessage.Text = $"Pozostało prób: {pozostaleProby}";
             }
 
             WordInput.Clear(); // Czyszczenie pola do wpisania słowa

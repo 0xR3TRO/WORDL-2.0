@@ -1,41 +1,136 @@
-﻿<Window x:Class="WORDLE_v._2.MainWindow"
+﻿<Window x:Class="WORDLE_v2.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Wordle Game" Height="400" Width="400">
+        Title="Wordle Game" Height="450" Width="400">
     <Grid>
-        <!-- Siatka 5x5 -->
-        <UniformGrid Rows="5" Columns="5" Margin="10" Name="GridLetters">
-            <!-- Komórki dla liter (tworzymy 25 komórek) -->
-            <TextBlock Text=" " Name="Cell0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell7" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell8" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell9" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell10" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell11" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell12" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell13" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell14" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell15" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell16" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell17" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell18" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell19" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell20" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell21" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell22" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell23" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-            <TextBlock Text=" " Name="Cell24" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
-        </UniformGrid>
+        <!-- Siatka na litery 5x5 z ustalonym stylem -->
+        <Grid Name="GridLetters" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-        <!-- Pole do wpisywania słowa -->
-        <TextBox Name="WordInput" Width="200" Height="30" VerticalAlignment="Bottom" Margin="0,0,0,40" HorizontalAlignment="Center" />
-        <!-- Przycisk do sprawdzania słowa -->
-        <Button Content="Sprawdź słowo" Width="120" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Center" Click="CheckWord" />
+            <!-- Definicja stylu dla komórek -->
+            <Grid.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="BorderBrush" Value="Black" />
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="CornerRadius" Value="5" />
+                    <Setter Property="Margin" Value="5" />
+                    <Setter Property="Padding" Value="10" />
+                    <Setter Property="Background" Value="White" />
+                </Style>
+
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="24" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                </Style>
+            </Grid.Resources>
+
+            <!-- Komórki siatki 5x5 z Borders i TextBlocks -->
+            <!-- Rząd 0 -->
+            <Border Grid.Row="0" Grid.Column="0">
+                <TextBlock Name="Cell00" Text=" " />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="1">
+                <TextBlock Name="Cell01" Text=" " />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="2">
+                <TextBlock Name="Cell02" Text=" " />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="3">
+                <TextBlock Name="Cell03" Text=" " />
+            </Border>
+            <Border Grid.Row="0" Grid.Column="4">
+                <TextBlock Name="Cell04" Text=" " />
+            </Border>
+
+            <!-- Rząd 1 -->
+            <Border Grid.Row="1" Grid.Column="0">
+                <TextBlock Name="Cell10" Text=" " />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="1">
+                <TextBlock Name="Cell11" Text=" " />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="2">
+                <TextBlock Name="Cell12" Text=" " />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="3">
+                <TextBlock Name="Cell13" Text=" " />
+            </Border>
+            <Border Grid.Row="1" Grid.Column="4">
+                <TextBlock Name="Cell14" Text=" " />
+            </Border>
+
+            <!-- Rząd 2 -->
+            <Border Grid.Row="2" Grid.Column="0">
+                <TextBlock Name="Cell20" Text=" " />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="1">
+                <TextBlock Name="Cell21" Text=" " />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="2">
+                <TextBlock Name="Cell22" Text=" " />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="3">
+                <TextBlock Name="Cell23" Text=" " />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="4">
+                <TextBlock Name="Cell24" Text=" " />
+            </Border>
+
+            <!-- Rząd 3 -->
+            <Border Grid.Row="3" Grid.Column="0">
+                <TextBlock Name="Cell30" Text=" " />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="1">
+                <TextBlock Name="Cell31" Text=" " />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="2">
+                <TextBlock Name="Cell32" Text=" " />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="3">
+                <TextBlock Name="Cell33" Text=" " />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="4">
+                <TextBlock Name="Cell34" Text=" " />
+            </Border>
+
+            <!-- Rząd 4 -->
+            <Border Grid.Row="4" Grid.Column="0">
+                <TextBlock Name="Cell40" Text=" " />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="1">
+                <TextBlock Name="Cell41" Text=" " />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="2">
+                <TextBlock Name="Cell42" Text=" " />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="3">
+                <TextBlock Name="Cell43" Text=" " />
+            </Border>
+            <Border Grid.Row="4" Grid.Column="4">
+                <TextBlock Name="Cell44" Text=" " />
+            </Border>
+        </Grid>
+
+        <!-- Interaktywne elementy gry: pole tekstowe i przyciski -->
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,350,0,0" RenderTransformOrigin="0.507,0.457">
+            <TextBox Name="WordInput" Width="200" FontSize="18" HorizontalAlignment="Center" Margin="10" />
+            <Button Content="Sprawdź słowo" Width="150" Click="CheckWord" HorizontalAlignment="Center" Margin="10" />
+            <TextBlock Name="GameMessage" FontSize="16" HorizontalAlignment="Center" Foreground="Red" />
+        </StackPanel>
     </Grid>
 </Window>
