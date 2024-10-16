@@ -1,5 +1,7 @@
-﻿using System;
+﻿// 0xRETRO https://github.com/0xr3tro
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -54,6 +56,19 @@ namespace WORDLE_v2
             if (slowoGracza.Length != 5)
             {
                 GameMessage.Text = "Słowo musi mieć dokładnie 5 liter!";
+                return;
+            }
+
+            // Sprawdzenie, czy słowo jest w liście i czy nie zawiera cyfr
+            if (!listaSlow.Contains(slowoGracza))
+            {
+                GameMessage.Text = "Słowo nie znajduje się na liście!";
+                return;
+            }
+
+            if (slowoGracza.Any(char.IsDigit))
+            {
+                GameMessage.Text = "Słowo nie może zawierać cyfr!";
                 return;
             }
 
